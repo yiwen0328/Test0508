@@ -3,6 +3,7 @@ package com.example.test0508;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import org.w3c.dom.Text;
 
 class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
 
+    private ImageView img;
     private TextView tvName1;
     private TextView tvHeight1;
     private List<StuData> stuDataList;
@@ -34,6 +36,7 @@ class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StuData stuData = stuDataList.get(position);
+        img.setImageResource(stuData.getId());
         tvHeight1.setText(stuData.getHeight());
         tvName1.setText(stuData.getName());
 
@@ -48,6 +51,7 @@ class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+             img = itemView.findViewById(R.id.tvPic);
              tvName1 = itemView.findViewById(R.id.tvname);
              tvHeight1 = itemView.findViewById(R.id.tvheight);
         }
