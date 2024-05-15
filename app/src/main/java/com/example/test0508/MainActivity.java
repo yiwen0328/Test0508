@@ -1,15 +1,23 @@
 package com.example.test0508;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private List<StuData> stuDataList;
+
+    private StuDataAapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.rvMyData);
 
-        List<StuData> stuDataList = new ArrayList<>();
+
+        stuDataList = new ArrayList<>();
         stuDataList.add(new StuData("John", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "180"));
         stuDataList.add(new StuData("Tom", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "175"));
         stuDataList.add(new StuData("Jerry", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "170"));
@@ -29,8 +38,28 @@ public class MainActivity extends AppCompatActivity {
         stuDataList.add(new StuData("Lucy", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "145"));
         stuDataList.add(new StuData("Linda", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "140"));
         stuDataList.add(new StuData("Marry", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "135"));
-        recyclerView.setAdapter(new StuDataAapter(stuDataList));
+        StuDataAapter adapter = new StuDataAapter(stuDataList);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+
+
+    public void addData(View view) {
+        Intent intent = new Intent(this, AddDataActivity.class);
+        startActityForResult(intent, 1);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String name = data.getStringExtra("name");
+            String height = data.getStringExtra("height");
+            String imageUrl = data.getStringExtra("imageUrl");
+            stuDataList.add(new StuData(name, imageUrl, height));
+            adapter.notifyDataSetChanged();
+        }
     }
 }
