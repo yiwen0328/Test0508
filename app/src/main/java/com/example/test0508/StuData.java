@@ -6,14 +6,24 @@ public class StuData {
     private String name;
     private String height;
 
+    private String imageUrl;
 
-    public StuData(int id, String name, String height) {
-        this.id =  id;
+    public StuData(int id,String name, String height) {
+        this.id = id;
         this.name = name;
         this.height = height;
+
     }
 
+    public StuData(String name, String imageUrl , String height) {
+        this.name = name;
+        this.height = height;
+        this.imageUrl = imageUrl;
+    }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
     public int getId() {
         return id;
     }
