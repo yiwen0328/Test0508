@@ -51,16 +51,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         stuDataList = new ArrayList<>();
-        stuDataList.add(new StuData("John", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "180"));
-        stuDataList.add(new StuData("Tom", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "175"));
-        stuDataList.add(new StuData("Jerry", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "170"));
-        stuDataList.add(new StuData("Mike", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "165"));
-        stuDataList.add(new StuData("Jack", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "160"));
-        stuDataList.add(new StuData("Rose", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "155"));
-        stuDataList.add(new StuData("Lily", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "150"));
-        stuDataList.add(new StuData("Lucy", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "145"));
-        stuDataList.add(new StuData("Linda", "https://pic5.sucaisucai.com/12/45/12045875_2.jpg", "140"));
-        stuDataList.add(new StuData("Marry", "https://thumb.ac-illust.com/a4/a4cef20734d25cce8ab60237cb709d31_t.jpeg", "135"));
+       stuDataList.add(new StuData("John", "https://images2.gamme.com.tw/news2/2015/42/36/p56Zn6Wbj6KW.jpg", "180"));
+        stuDataList.add(new StuData("Tom", "https://img.lovepik.com/free-png/20220125/lovepik-corgi-dog-png-image_401706065_wh860.png", "175"));
+        stuDataList.add(new StuData("Jerry", "https://images2.gamme.com.tw/news2/2015/42/36/p56Zn6Wbj6KW.jpg", "170"));
+        stuDataList.add(new StuData("Mike", "https://img.lovepik.com/free-png/20220125/lovepik-corgi-dog-png-image_401706065_wh860.png", "165"));
+        stuDataList.add(new StuData("Jack", "https://images2.gamme.com.tw/news2/2015/42/36/p56Zn6Wbj6KW.jpg", "160"));
+        stuDataList.add(new StuData("Rose", "https://img.lovepik.com/free-png/20220125/lovepik-corgi-dog-png-image_401706065_wh860.png", "155"));
+        stuDataList.add(new StuData("Lily", "https://images2.gamme.com.tw/news2/2015/42/36/p56Zn6Wbj6KW.jpg", "150"));
+        stuDataList.add(new StuData("Lucy", "https://img.lovepik.com/free-png/20220125/lovepik-corgi-dog-png-image_401706065_wh860.png", "145"));
+        stuDataList.add(new StuData("Andy", "https://images2.gamme.com.tw/news2/2015/42/36/p56Zn6Wbj6KW.jpg", "140"));
+        stuDataList.add(new StuData("Marry", "https://img.lovepik.com/free-png/20220125/lovepik-corgi-dog-png-image_401706065_wh860.png", "135"));
+
         StuDataAapter adapter = new StuDataAapter(stuDataList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

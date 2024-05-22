@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class AddDataActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity {
 
     private TextView addName;
     private TextView addHeight;
     private TextView addImageUrl;
-    private Intent intent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
