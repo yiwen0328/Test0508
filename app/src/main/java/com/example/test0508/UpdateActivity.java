@@ -11,37 +11,40 @@ public class UpdateActivity extends AppCompatActivity {
 
     private TextView addName;
     private TextView addHeight;
-    private TextView addImageUrl;
+    private TextView addUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_data);
-
-        TextView addName = findViewById(R.id.edAddName);
-        TextView addHeight = findViewById(R.id.edAddHeight);
-        TextView addImageUrl = findViewById(R.id.edAddimageUrl);
+        setContentView(R.layout.activity_update);
+        addName = findViewById(R.id.edAddName);
+        addHeight = findViewById(R.id.edAddHeight);
+        addUrl = findViewById(R.id.edAddimageUrl);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String height = intent.getStringExtra("height");
-        String imageUrl = intent.getStringExtra("imageUrl");
+        String url = intent.getStringExtra("url");
 
 
+        addName.setText(name);
+        addHeight.setText(height);
+        addUrl.setText(url);
 
     }
 
-    public void goback(View view) {
+    public void goBack(View view) {
         Intent intent = getIntent();
+        int id = intent.getIntExtra("position"  , 0);
         String name = addName.getText().toString();
         String height = addHeight.getText().toString();
-        String imageUrl = addImageUrl.getText().toString();
-
-
+        String url = addUrl.getText().toString();
 
         intent.putExtra("name", name);
         intent.putExtra("height", height);
-        intent.putExtra("imageUrl", imageUrl);
-        setResult(RESULT_OK, intent);
+        intent.putExtra("url", url);
+        intent.putExtra("position", id);
+
+        setResult(100, intent);
         finish();
     }
 }

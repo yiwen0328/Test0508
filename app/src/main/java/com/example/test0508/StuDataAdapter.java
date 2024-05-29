@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
-class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
+class StuDataAdapter extends RecyclerView.Adapter<StuDataAdapter.ViewHolder> {
 
     private ImageView img;
     private TextView tvName1;
     private TextView tvHeight1;
+
+    private OnItemClickListener listener;
 
     public List<StuData> getStuDataList() {
         return stuDataList;
@@ -28,7 +28,7 @@ class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
 
     private List<StuData> stuDataList;
 
-    public StuDataAapter(List<StuData> stuDataList) {
+    public StuDataAdapter(List<StuData> stuDataList) {
         this.stuDataList = stuDataList;
     }
 
@@ -44,24 +44,10 @@ class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StuData stuData = stuDataList.get(position);
-        //img.setImageResource(stuData.getId());
-
+//        img.setImageResource(stuData.getId());
         Glide.with(holder.itemView).load(stuData.getImageUrl()).into(img);
         tvHeight1.setText(stuData.getHeight());
         tvName1.setText(stuData.getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //刪除點擊的item
-
-                Intent intent = new Intent(v.getContext(),AddDataActivity.class);
-                intent.putExtra("name", stuData.getName());
-                intent.putExtra("height", stuData.getHeight());
-                intent.putExtra("imageUrl", stuData.getImageUrl());
-                stuDataList.remove(position);
-                v.getContext().startActivity(intent);
-            }
-        });
 
     }
 
@@ -70,13 +56,31 @@ class StuDataAapter extends RecyclerView.Adapter<StuDataAapter.ViewHolder>{
         return stuDataList.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.listener = onItemClickListener;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-             img = itemView.findViewById(R.id.tvPic);
-             tvName1 = itemView.findViewById(R.id.tvname);
-             tvHeight1 = itemView.findViewById(R.id.tvheight);
+            img = itemView.findViewById(R.id.tvPic);
+            tvName1 = itemView.findViewById(R.id.tvname);
+            tvHeight1 = itemView.findViewById(R.id.tvheight);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAbsoluteAdapterPosition();
+                    if (listener != null) {
+                        listener.onItemClick(position);
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+
     }
 }

@@ -43,7 +43,7 @@ public class AddDataActivity extends AppCompatActivity {
         intent.putExtra("name", name);
         intent.putExtra("height", height);
         intent.putExtra("imageUrl", imageUrl);
-        setResult(RESULT_OK, intent);
+        setResult(200, intent);
         finish();
     }
 }
